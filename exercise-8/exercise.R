@@ -11,21 +11,25 @@ library(dplyr)
 
 # View in the data set. Start to understand what the data columns contains
 # Be sure to comment out the function so it won't view everytime you run the code.
-
+# View(pulitzer)
 
 # Use 'colnames' to print out the names of the columns
-
+colnames(pulitzer)
 
 # Use 'str' to print what types of values are contained in each column
 # Did any value type surprise you? Why do you think they are that type?
+str(pulitzer)
+# Daily Ciruclation and Change in Daily Circulation is of type char
 
-
-# Add a column that contains the diffrence in changes in Daily Circulation from 2004 to 2013
-
+# Add a column in a dataframe called 'Pulitzer.Prize.Change` that contains the diffrence in changes
+# in Pulitzer Prize Winners from 2004 to 2013 and Pultizer Prize Winners from 1990 to 2003.
+Pultizer.Prize.Change <- mutate(pulitzer, diff.between.2004.2013.to.1990.2003 = Pulitzer.Prize.Winners.and.Finalists..2004.2014 - Pulitzer.Prize.Winners.and.Finalists..1990.2003)
 
 # What publication gained the most pulitzer prizes from 2004-2014?
 # Be sure to use the pipe operator! 
-
+most.prizes <- filter(Pultizer.Prize.Change, max(Pulitzer.Prize.Winners.and.Finalists..2004.2014) == 
+  Pulitzer.Prize.Winners.and.Finalists..2004.2014) %>% 
+  select(Newspaper)
 
 # Which publication with at least 5 Pulitzers won from 2004-2014 had the biggest decrease(negative) in Daily circulation numbers? 
 # This publication should have Pulitzer prizes won a minimum of 5 Pulitzers, as well as the biggest decrease in circulation
